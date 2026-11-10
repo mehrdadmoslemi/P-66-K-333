@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "K-100 Independent Execution Package Schema",
+  "type": "object",
+  "required": [
+    "owner_attested",
+    "deadline",
+    "run_id",
+    "raw_log",
+    "raw_log_hash",
+    "model_hash",
+    "config_full",
+    "baseline_hash",
+    "iso-baseline"
+  ],
+  "properties": {
+    "owner_attested": {
+      "type": "string",
+      "description": "Identity of the person who attested to this package"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 deadline for independent execution"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "Unique identifier for this execution run"
+    },
+    "raw_log": {
+      "type": "string",
+      "description": "Raw execution log output"
+    },
+    "raw_log_hash": {
+      "type": "string",
+      "description": "SHA256 hash of the raw log"
+    },
+    "model_hash": {
+      "type": "string",
+      "description": "SHA256 hash of the model weights"
+    },
+    "config_full": {
+      "type": "string",
+      "description": "Full configuration as JSON string"
+    },
+    "baseline_hash": {
+      "type": "string",
+      "description": "SHA256 hash of the baseline model"
+    },
+    "iso-baseline": {
+      "type": "string",
+      "description": "Identifier of the ISO baseline model"
+    }
+  }
+}

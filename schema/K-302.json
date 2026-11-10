@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "K-302 MoE/MC# Executable Package Schema (K-100 Compliant)",
+  "description": "ماشین‌خوان برای ۹ فیلد اجباری K-100 مخصوص معماری MoE/MC# (K-302). بر پایه K-333 تطبیق‌یافته.",
+  "type": "object",
+  "required": [
+    "owner_attested",
+    "deadline",
+    "run_id",
+    "raw_log",
+    "raw_log_hash",
+    "model_hash",
+    "config_full",
+    "baseline_hash",
+    "iso_baseline"
+  ],
+  "properties": {
+    "owner_attested": {
+      "type": "string",
+      "description": "شناسه مالک نام‌برده اجرای مستقل (مثلاً A-5 برای K-302)",
+      "pattern": "^A-\d+$"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "مهلت قطعی ISO 8601 برای تکمیل بسته اجرایی"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "شناسه یکتای اجرای مستقل (UUID v4 پیشنهادی)",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "raw_log": {
+      "type": "string",
+      "description": "مسیر یا محتوای لاگ خام اجرای آزمایشی (قابل‌دریافت)"
+    },
+    "raw_log_hash": {
+      "type": "string",
+      "description": "هش SHA256 محتوای raw_log",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "model_hash": {
+      "type": "string",
+      "description": "هش SHA256 وزن‌های مدل MoE/MC#",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "config_full": {
+      "type": "object",
+      "description": "پیکربندی کامل نرم‌افزار و سخت‌افزار برای بازتولید",
+      "required": ["model_config", "training_config", "hardware", "software_versions"],
+      "properties": {
+        "model_config": {"type": "object"},
+        "training_config": {"type": "object"},
+        "hardware": {"type": "object"},
+        "software_versions": {"type": "object"}
+      }
+    },
+    "baseline_hash": {
+      "type": "string",
+      "description": "هش SHA256 خط‌پایهٔ همسان (iso-baseline) برای مقایسه عادلانه",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "iso_baseline": {
+      "type": "object",
+      "description": "مشخصات کامل خط‌پایهٔ همسان: معماری، داده، توکن‌ها، محاسبه FLOPs",
+      "required": ["architecture", "dataset", "tokens", "flops", "config_hash"],
+      "properties": {
+        "architecture": {"type": "string"},
+        "dataset": {"type": "string"},
+        "tokens": {"type": "integer"},
+        "flops": {"type": "number"},
+        "config_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "additionalProperties": false
+}

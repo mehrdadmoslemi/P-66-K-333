@@ -1,0 +1,1 @@
+{"owner_attested":true,"deadline":"2025-06-30T23:59:59Z","run_id":"run_bert_base_fixture_001","raw_log":"logs/bert-base-fixture-001.log","raw_log_hash":"sha256:...","model_hash":"sha256:...","config_full":{"model":"bert-base","framework":"transformers"},"baseline_hash":"sha256:...","iso-baseline":true}
