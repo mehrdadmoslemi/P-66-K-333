@@ -32,7 +32,7 @@ def main():
         print("gh CLI یافت شد. تلاش برای ایجاد مخزن در GitHub...")
         # Try to create a repo using gh. If it already exists or fails, it will fall back to manual instructions.
         # We use a default name but the user can change it if needed.
-        create_cmd = "gh repo create P-66-K-333 --public --remote --push"
+        create_cmd = "gh repo create P-66-K-333 --public --source . --remote origin --push"
         result, success = run_command(create_cmd)
         
         if success:
